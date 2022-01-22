@@ -10,6 +10,8 @@ function clickButtons(){
         allButtons[i].addEventListener('click', function() {
             if(allButtons[i].classList.contains('numbers')){
                 displayField.textContent = allButtons[i].value
+            }else if(allButtons[i].classList.contains('clear')){
+                displayField.textContent = 0;
             }
         }) 
     }
