@@ -1,20 +1,38 @@
+let displayNumber = 0;
+let op = "";
 const displayField = document.querySelector(".display")
 
 const allButtons = document.querySelectorAll("button")
 
-let sum = 0;
-let op = "";
+function updateDisplay(){
+    const displayField = document.querySelector(".display")
+    displayField.innerHTML = displayNumber
+}
+
 
 function clickButtons(){
     for(let i=0; i < allButtons.length; i++){
         allButtons[i].addEventListener('click', function() {
             if(allButtons[i].classList.contains('numbers')){
-                displayField.textContent += allButtons[i].value
+                inputNumber(allButtons[i].value)
+                //update after each number was changed
+                updateDisplay()
             }else if(allButtons[i].classList.contains('clear')){
-                displayField.textContent = 0;
+                displayNumber = 0;
+                updateDisplay()
             }
         }) 
     }
 }
 
-clickButtons();
+
+function inputNumber(number){
+    //1st number
+   if(displayNumber === 0){
+        displayNumber = number
+    }else{
+        displayNumber += number
+    }
+}
+
+clickButtons()
