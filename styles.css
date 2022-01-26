@@ -38,7 +38,7 @@ body{
     padding: 40px;
     padding-top: 10px;
     background-color: #000;
-    font-weight: 500;
+    font-weight: bold;
 }
 
 .all-buttons > button{
@@ -57,7 +57,18 @@ body{
     color: #fff;
 }
 
+.numbers:active{
+    background-color: rgb(156, 156, 156);
+    transition: all 0.05s;
+}
+
 .op, .equals{
     background-color: rgb(255, 172, 64);
     color:#fff;
+}
+
+.op:focus{
+    color: rgb(255, 172, 64);
+    background-color:#fff;
+    transition: all 0.5s;
 }
