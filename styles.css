@@ -72,3 +72,8 @@ body{
     background-color:#fff;
     transition: all 0.5s;
 }
+
+.equals:active{
+    color: rgb(255, 172, 64);
+    background-color:#fff;
+}

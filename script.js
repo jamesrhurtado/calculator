@@ -86,7 +86,7 @@ function inputEquals(){
     }else if(secondSign != null){
         //second operation
         secondValue = displayNumber
-        result = calculate(Number(firstValue), Number(secondValue), secondSign)
+        result = calculate(Number(firstValue), Number(secondValue), firstSign)
         if(result === 'no lol'){
             displayField === 'no lol'
         }else{
