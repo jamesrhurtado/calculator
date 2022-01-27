@@ -5,6 +5,7 @@ let firstSign = null
 let secondSign = null
 let result = 0
 let op = "";
+let flag = false
 const displayField = document.querySelector(".display")
 
 const allButtons = document.querySelectorAll("button")
@@ -33,12 +34,22 @@ function clickButtons(){
                 firstSign = null
                 firstValue = null
                 secondValue = null
+                flag = false
                 updateDisplay()
             }else if(allButtons[i].classList.contains('op')){
                 inputSign(allButtons[i].value)
                 updateDisplay()
             }else if(allButtons[i].classList.contains('equals')){
                 inputEquals()
+                updateDisplay()
+            }else if(allButtons[i].classList.contains('percentage')){
+                inputPercent()
+                updateDisplay()
+            }else if(allButtons[i].classList.contains('sign')){
+                inputChangeSign()
+                updateDisplay()
+            }else if(allButtons[i].classList.contains('decimal')){
+                inputDecimal(allButtons[i].value)
                 updateDisplay()
             }
         }) 
@@ -56,6 +67,7 @@ function inputNumber(number){
     }else{
         //second number
         if(displayNumber === firstValue){
+            flag = false;
             displayNumber = number
         }else{
             displayNumber += number
@@ -67,6 +79,7 @@ clickButtons()
 
 function inputSign(op){
     if(firstSign != null && secondSign === null){
+        //assigning second sign
         secondSign = op
         secondValue = displayNumber
         displayNumber = calculate(Number(firstValue), Number(secondValue), firstSign)
@@ -74,6 +87,9 @@ function inputSign(op){
         result = null
     }else if(firstSign != null && secondSign != null){
         secondValue = displayNumber
+        displayNumber = calculate(Number(firstValue), Number(secondValue), secondSign)
+        secondSign = op
+        firstValue = displayNumber
     }else{
         firstValue = displayNumber
         firstSign = op
@@ -86,7 +102,7 @@ function inputEquals(){
     }else if(secondSign != null){
         //second operation
         secondValue = displayNumber
-        result = calculate(Number(firstValue), Number(secondValue), firstSign)
+        result = calculate(Number(firstValue), Number(secondValue), secondSign)
         if(result === 'no lol'){
             displayField === 'no lol'
         }else{
@@ -120,5 +136,21 @@ function calculate(first, second, sign){
             }
         default:
             return NaN
+    }
+}
+
+
+function inputPercent(){
+    displayNumber = displayNumber/100
+}
+
+function inputChangeSign(){
+    displayNumber = displayNumber * -1
+}
+
+function inputDecimal(dot){
+    if(!flag){
+        displayNumber += dot;
+        flag = true
     }
 }
